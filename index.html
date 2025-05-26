@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <!-- Meta tags for social media banners, these should be filled in appropriatly as they are your "business card" -->
+  <!-- Replace the content tag with appropriate information -->
+  <meta name="description" content="MoDoMoDo">
+  <meta property="og:title" content="MoDoMoDo: Multi-Domain Data Mixtures for Multimodal LLM Reinforcement Learning"/>
+  <meta property="og:description" content="MoDoMoDo combines Multi-Domain Data Mixtures with Multimodal LLM Reinforcement Learning, enabling generalizable performance gain across diverse VL tasks."/>
+  <!--meta property="og:url" content="https://github.com/uclaml/SPIN"/-->
+  
+
+  <meta name="twitter:title" content="MoDoMoDo: Multi-Domain Data Mixtures for Multimodal LLM Reinforcement Learning">
+  <meta name="twitter:description" content="MoDoMoDo combines Multi-Domain Data Mixtures with Multimodal LLM Reinforcement Learning, enabling generalizable performance gain across diverse VL tasks.">
+  <!-- Keywords for your paper to be indexed by-->
+  <meta name="keywords" content="LLM, Multimodal, Data Mixture, Reinforcement Learning, GRPO, Post-Training">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+  <title>MoDoMoDo: Multi-Domain Data Mixtures for Multimodal LLM Reinforcement Learning</title>
+  <link rel="icon" type="image/x-icon" href="static/images/logo.ico">
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+  rel="stylesheet">
+
+  <link rel="stylesheet" href="static/css/bulma.min.css">
+  <link rel="stylesheet" href="static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="static/css/fontawesome.all.min.css">
+  <link rel="stylesheet"
+  href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="static/css/index.css">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://documentcloud.adobe.com/view-sdk/main.js"></script>
+  <script defer src="static/js/fontawesome.all.min.js"></script>
+  <script src="static/js/bulma-carousel.min.js"></script>
+  <script src="static/js/bulma-slider.min.js"></script>
+  <script src="static/js/index.js"></script>
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+  <!-- Custom colours for inline highlights -->
+  <style>
+    .has-text-blue  { color:#3273dc; }   /* Seed  (Bulma’s primary blue)  */
+    .has-text-green { color:#48c78e; }   /* Heuristic  (Bulma success)    */
+    .has-text-pink  { color:#d946ef; }   /* Model‑Based                   */
+  </style>
+  
+
+</head>
+<body>
+
+    <!-- =====================================================
+     Data‑Mixture Strategy Cards  –  drop‑in component
+===================================================== -->
+
+
+
+
+
+  <section class="hero">
+    <div class="hero-body">
+      <div class="container is-max-desktop">
+        <div class="columns is-centered">
+          <div class="column has-text-centered">
+            
+            <h1 class="title is-1 publication-title">
+                <img src="./static/images/logo.ico" width="40"/>
+            <span class="rainbow_text_animated">MoDoMoDo</span>
+        </h1>
+        <h2 class="subtitle is-2 publication-subtitle">
+            Multi-Domain Data Mixtures for Multimodal LLM Reinforcement Learning
+            </h2>
+            <div class="is-size-5 publication-authors">
+                <!-- Paper authors -->
+                <span class="author-block">
+                  <a href="https://lynl7130.github.io/" target="_blank">Yiqing Liang</a><sup>1</sup>,
+                </span>
+                <span class="author-block">
+                  <a href="https://jielin-qiu.github.io/" target="_blank">Jielin Qiu</a><sup>4</sup>,
+                </span>
+                <span class="author-block">
+                  <a href="https://wenhao.pub/" target="_blank">Wenhao Ding</a><sup>3</sup>,
+                </span>
+                <span class="author-block">
+                  <a href="https://zuxin.me/" target="_blank">Zuxin Liu</a><sup>4</sup>,
+                </span>
+                <span class="author-block">
+                  <a href="http://www.jamestompkin.com" target="_blank">James Tompkin</a><sup>1</sup>,
+                </span>
+                <span class="author-block">
+                  <a href="https://mxu34.github.io/" target="_blank">Mengdi Xu</a><sup>5</sup>,
+                </span>
+                <span class="author-block">
+                  <a href="https://xiamengzhou.github.io/" target="_blank">Mengzhou Xia</a><sup>6</sup>,
+                </span>
+                <span class="author-block">
+                  <a href="https://engineering.tamu.edu/cse/profiles/tu-zhengzhong.html" target="_blank">Zhengzhong Tu</a><sup>7</sup>,
+                </span>
+                <span class="author-block">
+                  <a href="https://laixishi.github.io/" target="_blank">Laixi Shi</a><sup>8</sup>,
+                </span>
+                <span class="author-block">
+                  <a href="https://jiachengzhuml.github.io/" target="_blank">Jiacheng Zhu</a><sup>2</sup>
+                </span>
+              </div>
+              
+              <div class="is-size-5 publication-authors">
+                <span class="author-block">
+                  <sup>1</sup>Brown University&nbsp;&bull;&nbsp;
+                  <sup>2</sup>Massachusetts Institute of Technology&nbsp;&bull;&nbsp;
+                  <sup>3</sup>NVIDIA Research&nbsp;&bull;&nbsp;
+                  <sup>4</sup>Salesforce Research&nbsp;&bull;&nbsp;
+                  <sup>5</sup>Stanford University&nbsp;&bull;&nbsp;
+                  <sup>6</sup>Princeton University&nbsp;&bull;&nbsp;
+                  <sup>7</sup>Texas A&amp;M University&nbsp;&bull;&nbsp;
+                  <sup>8</sup>California Institute of Technology
+                  
+                </span>
+              </div>
+              
+
+                  <div class="column has-text-centered">
+                    <div class="publication-links">
+                         <!-- Arxiv PDF link -->
+                      <!--span class="link-block">
+                        <a href="https://arxiv.org/pdf/2401.01335.pdf" target="_blank"
+                        class="external-link button is-normal is-rounded is-dark">
+                        <span class="icon">
+                          <i class="fas fa-file-pdf"></i>
+                        </span>
+                        <span>Paper</span>
+                      </a>
+                    </span-->
+
+                  <!-- Github link -->
+                  <!--span class="link-block">
+                    <a href="https://github.com/uclaml/SPIN" target="_blank"
+                    class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      <i class="fab fa-github"></i>
+                    </span>
+                    <span>Code</span>
+                  </a>
+                </span-->
+
+                <!-- ArXiv abstract Link -->
+                <!--span class="link-block">
+                  <a href="https://arxiv.org/abs/2401.01335" target="_blank"
+                  class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                    <i class="ai ai-arxiv"></i>
+                  </span>
+                  <span>arXiv</span>
+                </a>
+              </span-->
+
+              <!-- HuggingFace Model Link -->
+              <!--span class="link-block">
+                <a href="https://huggingface.co/collections/UCLA-AGI/zephyr-7b-sft-full-spin-65c361dfca65637272a02c40" target="_blank"
+                class="external-link button is-normal is-rounded is-dark">
+                <span class="icon">
+                  <img src="static/images/hf-logo.svg" alt="My Icon">
+                </span>
+                <span>Model</span>
+              </a>
+              </span-->
+
+              <!-- HuggingFace Dataset Link -->
+              <!--span class="link-block">
+                <a href="https://huggingface.co/collections/UCLA-AGI/datasets-spin-65c3624e98d4b589bbc76f3a" target="_blank"
+                class="external-link button is-normal is-rounded is-dark">
+                <span class="icon">
+                  <img src="static/images/hf-logo.svg" alt="My Icon">
+                </span>
+                <span>Dataset</span>
+              </a>
+              </span-->
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Paper abstract -->
+<section class="section hero is-light">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Abstract</h2>
+        <div class="content has-text-justified">
+          <p>
+            Reinforcement Learning with Verifiable Rewards (RLVR) has recently emerged as a powerful paradigm for post-training large language models (LLMs), achieving state-of-the-art performance on tasks with structured, verifiable answers. 
+Applying RLVR to Multimodal LLMs (MLLMs) presents significant opportunities but is complicated by the broader, heterogeneous nature of vision-language tasks that demand nuanced visual, logical, and spatial capabilities. 
+As such, training MLLMs using RLVR on multiple datasets could be beneficial but creates challenges with conflicting objectives from interaction among diverse datasets, highlighting the need for optimal dataset mixture strategies to improve generalization and reasoning.
+We introduce a systematic post-training framework for Multimodal LLM RLVR, featuring a rigorous data mixture problem formulation and benchmark implementation. 
+Specifically, 
+(1) We developed a multimodal RLVR framework for multi-dataset post-training by curating a dataset that contains different verifiable vision-language problems and enabling multi-domain online RL learning with different verifiable rewards; 
+(2) We proposed a data mixture strategy that learns to predict the RL fine-tuning outcome from the data mixture distribution, and consequently optimizes the best mixture. 
+Comprehensive experiments showcase that multi-domain RLVR training, when combined with mixture prediction strategies, can significantly boost MLLM general reasoning capacities. 
+Our best mixture improves the post-trained model's accuracy on out-of-distribution benchmarks by an average of 5.24% compared to the same model post-trained with uniform data mixture, and by a total of 20.74% compared to the pre-finetuning baseline.
+
+        </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- End paper abstract -->
+
+<!-- SPIN. -->
+<div class="columns is-centered">
+  <div class="column is-three-fifths">
+    <h2 class="title is-3"> </h2>
+    <h2 class="title is-3">Introduction</h2>
+    <p align="center">
+      <img src="static/images/ModoModoTeaser.svg" height="250"/>
+    </p>
+  </div>
+</div>
+<!--/ SPIN. -->
+<!-- Results. -->
+<div class="columns is-centered">
+  <div class="column is-three-fifths">
+    <div class="content has-text-justified">
+        <p>
+            Reinforcement Learning with Verifiable Rewards (RLVR) has pushed language-only models to state-of-the-art results on reasoning tasks, 
+            yet extending it to multimodal LLMs is non-trivial: verifiable VL datasets are scarce and highly heterogeneous, and existing efforts usually fine-tune on just one task domain, 
+            which limits generalization.  
+            This focus can be inadequate for achieving the desirable generalization and comprehensive reasoning capabilities of MLLMs. 
+            While pooling several diverse datasets could cover a broader range of vision-language skills, using multiple training datasets introduces challenges,
+            including potential conflicting objectives resulting from interactions among diverse datasets,
+            as well as corresponding unstable behaviors during training
+            This tension makes the <strong><em>dataset mixture</em></strong> itself a core design question—
+            </p>
+            <p class="question-box" style="font-weight:bold; border:1px dashed #999; padding:0.6em; text-align:center;">
+                Q&nbsp;&mdash;&nbsp; How to mix diverse datasets in RLVR to achieve the wide-range of multimodal capabilities??
+                </p>
+       
+    </div>
+  </div>
+</div>
+<!--/ Results. -->
+
+
+<!-- SPIN. -->
+<div class="columns is-centered">
+  <div class="column is-three-fifths">
+    <h2 class="title is-3"> </h2>
+    <h2 class="title is-3">Verifiable Data Curated for Mixture</h2>
+    <p align="center">
+      <img src="static/images/datasets.jpg" height="300"/>
+    </p>
+  </div>
+</div>
+<!--/ SPIN. -->
+
+<div class="columns is-centered">
+    <div class="column is-three-fifths">
+  
+      <!-- section title -->
+      <h2 class="title is-3 mb-5">Data Mixture Strategies</h2>
+  
+      <div class="columns is-vcentered is-mobile">
+  
+        <!-- Seed Mix -->
+        <div class="column has-text-centered">
+          <span class="icon is-large has-text-blue">
+            <i class="fas fa-seedling fa-2x"></i>
+          </span>
+          <h4 class="title is-4 mt-2">Seed Mixture</h4>
+          <p class="is-size-6">
+            <em>Scatter &amp; Observe.</em><br>
+            uniform recipes establish baselines.
+          </p>
+        </div>
+  
+        <!-- arrow -->
+        <div class="column is-narrow is-flex is-justify-content-center is-align-items-center">
+          <span class="icon has-text-grey-light">
+            <i class="fas fa-long-arrow-alt-right fa-2x"></i>
+          </span>
+        </div>
+  
+        <!-- Heuristic Mix -->
+        <div class="column has-text-centered">
+          <span class="icon is-large has-text-green">
+            <i class="fas fa-cogs fa-2x"></i>
+          </span>
+          <h4 class="title is-4 mt-2">Heuristic Mixture</h4>
+          <p class="is-size-6">
+            <em>Score‑Driven Tweaks.</em><br>
+            adapt weights from baseline scores.
+          </p>
+        </div>
+  
+        <!-- arrow -->
+        <div class="column is-narrow is-flex is-justify-content-center is-align-items-center">
+          <span class="icon has-text-grey-light">
+            <i class="fas fa-long-arrow-alt-right fa-2x"></i>
+          </span>
+        </div>
+  
+        <!-- Model‑Based Mix -->
+        <div class="column has-text-centered">
+          <span class="icon is-large has-text-pink">
+            <i class="fas fa-brain fa-2x"></i>
+          </span>
+          <h4 class="title is-4 mt-2">Model‑based Mixture</h4>
+          <p class="is-size-6">
+            <em>Predict &amp; Search.</em><br>
+            parametric function fits observation.
+          </p>
+        </div>
+  
+      </div>
+    </div>
+  </div>
+
+<!-- ==========================================================
+     Evaluation & Ablation  (Section 3.3)
+     –  layout follows SPIN’s two‑column figure‑plus‑text style
+========================================================== -->
+<section id="ablation" class="section">
+    <div class="container is-max-desktop">
+  
+      <h2 class="title is-3 has-text-centered">Evaluation &amp; Ablation</h2>
+  
+      <!-- -------------------------------------------------- -->
+      <!-- 1.   Data Mixture Helps Generalization  (Fig 3)    -->
+      <!-- -------------------------------------------------- -->
+      <div class="columns is-vcentered">
+        <div class="column is-half">
+          <figure class="image">
+            <img src="static/images/fig3.jpg" alt="Figure 3 – Uniform mixture vs. base model">
+          </figure>
+        </div>
+        <div class="column">
+          <h4 class="title is-5">Mixture &nbsp;⇒&nbsp; Generalization</h4>
+          <p class="is-size-6">
+            Even a <em>uniform</em> blend of our five datasets lifts
+            every in‑domain score—and, crucially, boosts <strong>out‑of‑domain</strong>
+            accuracy over the pre‑fine‑tuned baseline.
+          </p>
+        </div>
+      </div>
+  
+      <hr>
+  
+      <!-- -------------------------------------------------- -->
+<!--  Intricate Nature of Data Mixture  (Fig 4 + Fig 5) -->
+<!-- -------------------------------------------------- -->
+
+<!-- Row 1 : text spans entire width -->
+<div class="columns">
+    <div class="column">
+      <h4 class="title is-5">Mixing needs to be Mindful&nbsp;💡</h4>
+      <p class="is-size-6">
+        More data is <em>not</em> always better.
+        The left figure shows single‑dataset runs that beat the “All” mixture on
+        certain benchmarks, while the right figure reveals that <em>dropping</em> one
+        source sometimes <strong>improves</strong> out‑of‑domain performance.
+        The takeaway: interactions between datasets can be cooperative or
+        antagonistic, so we need smarter weighting than “just add more.”
+      </p>
+    </div>
+  </div>
+  
+  <!-- Row 2 : two figures, left → right -->
+  <div class="columns is-vcentered">
+    <div class="column is-half">
+      <figure class="image">
+        <img src="static/images/fig4.jpg" alt="Figure 4 – Single vs. All">
+      </figure>
+    </div>
+    <div class="column is-half">
+      <figure class="image">
+        <img src="static/images/fig5.jpg" alt="Figure 5 – Exclude‑one analysis">
+      </figure>
+    </div>
+  </div>
+  
+  
+      <hr>
+  
+      <!-- -------------------------------------------------- -->
+      <!-- 3.   Parametric Model Choice  (Fig 7)              -->
+      <!-- -------------------------------------------------- -->
+      <div class="columns">
+        <div class="column">
+          <h4 class="title is-5">Quadratic Surrogate&nbsp;▶&nbsp;Capturing Curvature</h4>
+          <p class="is-size-6">
+            A linear model or PCA fails to capture the curved landscape of
+            mixture → performance.
+            The <strong>quadratic surrogate</strong>, in comparison, tracks both
+            training and held‑out folds, making it a reliable oracle for
+            mixture search that powers our Model‑based strategy.
+          </p>
+        </div>
+      </div>
+
+      <!-- Row 2 : figure centred below the text -->
+<div class="columns is-centered">
+    
+      <figure class="image">
+        <img src="static/images/fig7.jpg" style="max-height: 500px; object-fit: contain;"
+         alt="Figure 7 – Surrogate model fit">
+      </figure>
+    
+  </div>
+  
+      <hr>
+  
+      <!-- -------------------------------------------------- -->
+<!-- 4.   Strategy Comparison  (Figure 6)               -->
+<!-- -------------------------------------------------- -->
+<div class="columns is-vcentered">
+    <div class="column">
+      <h4 class="title is-5">Which Strategy Wins?</h4>
+      <p class="is-size-6">
+        <strong><span class="has-text-blue">Seed Mixtures</span></strong> set the baseline;&nbsp;
+        <strong><span class="has-text-green">Heuristic Mixtures</span></strong> lift both
+        median <em>and</em> minimum scores;&nbsp;while the&nbsp;<strong><span class="has-text-pink">Model‑based Mixtures</span></strong> achieve the
+        highest median accuracy with the lowest variance&mdash; evidence
+        that a learned surrogate pays off.
+      </p>
+    </div>
+  
+    <div class="column is-half">
+      <figure class="image">
+        <img src="static/images/fig6.jpg" alt="Figure 6 – Out‑score box‑plot">
+      </figure>
+    </div>
+  </div>
+  </section>
+  
+
+
+<!--BibTex citation -->
+  <!--section class="section" id="BibTeX">
+    <div class="container is-max-desktop content">
+      <h2 class="title">BibTeX</h2>
+      <pre><code></code></pre>
+    </div>
+</section-->
+<!--End BibTex citation -->
+
+
+  <footer class="footer">
+  <div class="container">
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="content">
+
+          <p>
+            This page was built using the <a href="https://github.com/eliahuhorwitz/Academic-project-page-template" target="_blank">Academic Project Page Template</a> which was adopted from the <a href="https://nerfies.github.io" target="_blank">Nerfies</a> project page.
+            <br> This website is licensed under a <a rel="license"  href="http://creativecommons.org/licenses/by-sa/4.0/" target="_blank">Creative
+            Commons Attribution-ShareAlike 4.0 International License</a>.
+          </p>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- Statcounter tracking code -->
+  
+<!-- You can add a tracker to track page visits by creating an account at statcounter.com -->
+
+    <!-- End of Statcounter Code -->
+
+  </body>
+  </html>
